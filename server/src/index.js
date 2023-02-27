@@ -14,6 +14,7 @@ const adminAuthRouetes = require('./routes/admin/authentication');
 const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
+const initialDataRoutes = require('./routes/admin/initialData');
 
 //Middlewares
 app.use(cors());
@@ -24,6 +25,8 @@ app.use('/OTP', adminAuthRouetes);
 app.use('/OTP', categoryRoutes);
 app.use('/OTP', productRoutes);
 app.use('/OTP', cartRoutes);
+app.use('/OTP', initialDataRoutes);
+
 
 //MongoDB Connection
 mongoose.connect(
