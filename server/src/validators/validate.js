@@ -15,7 +15,7 @@ exports.validatesSignUpRequest = [
     .withMessage('A valid email is required'),
     check('password')
     .isLength({ min: 5 })
-    .withMessage('Password must be atleast 5 characters long'),
+    .withMessage('Password must be atleast 7 characters long'),
     check('phoneNumber')
     .notEmpty()
     .withMessage('Phone number is required'),

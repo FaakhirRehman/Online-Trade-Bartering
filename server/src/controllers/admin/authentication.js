@@ -1,10 +1,11 @@
 const User = require('../../models/user');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 exports.signup = (req, res) => {
 
     User.findOne({ email: req.body.email })
-    .exec((error, user) => {
+    .exec(async (error, user) => {
         if(user){
             return res.json({
                 message: "E-mail Already In Use!"
@@ -24,12 +25,14 @@ exports.signup = (req, res) => {
             postalCode
         } = req.body;
 
+        const hashed_password = await bcrypt.hash(password, 10);
+
         const newUser = new User({
             firstName,
             lastName,
             username,
             email,
-            password,
+            hashed_password,
             phoneNumber,
             city,
             address01,
