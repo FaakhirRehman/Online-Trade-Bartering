@@ -42,8 +42,8 @@ function App() {
             <Route path='/category' element={ <Category /> } />
           </Route>
           <Route path='/dashboard' element={<Venderdashboard />}></Route>
-          <Route path='/user/signin' element={<Usersignin />}></Route>
-          <Route path='/user/signup' element={<Usersignup />}></Route>
+          <Route path='/admin/signin' element={<Usersignin />}></Route>
+          <Route path='/admin/signup' element={<Usersignup />}></Route>
         </Routes>
       </Router>
     </div>

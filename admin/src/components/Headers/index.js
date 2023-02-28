@@ -23,7 +23,7 @@ export const Header = (props) => {
     const renderNonLoggedInLinks = () => {
         return (<Nav>
             <li className='nav-item'>
-                <NavLink to="/user/signin" className="nav-link">Sign In</NavLink>
+                <NavLink to="/admin/signin" className="nav-link">Sign In</NavLink>
             </li>
         </Nav>);
     }
