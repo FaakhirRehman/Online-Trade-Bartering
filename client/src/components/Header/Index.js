@@ -8,7 +8,7 @@ import './style.css';
 
 export const Header = (props) => {
   return(
-    <div className='header'>Header</div>
+    <div className='header'>Online Trade & Bartering</div>
    )
 
  }
