@@ -15,7 +15,7 @@ export const ProductListPage = (props) => {
 
     const product = useSelector(state => state.product);
     const dispatch = useDispatch();
-    const { slug } = useParams();
+    const { slug, name } = useParams();
     const [priceRange, setPriceRange] = useState({
         under20k: "Under 20,000",
         under30k: "Under 30,000",
@@ -34,7 +34,7 @@ export const ProductListPage = (props) => {
                     return (
                         <div className='card'>
                             <div className='cardHeader'>
-                                <div>{slug} Phones {priceRange[key]}</div>
+                                <div>{name} Product {priceRange[key]}</div>
                                 <button>View All</button>
                             </div>
                             <div style={{ display: 'flex' }} >

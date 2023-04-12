@@ -84,7 +84,7 @@ export const Category = (props) => {
 
     const createCategoryList = (categories, options = []) => {
         for (let category of categories) {
-            options.push({ value: category._id, name: category.name, parentId: category.parentId })
+            options.push({ value: category._id, name: category.name, parentId: category.parentId, type: category.type })
             if (category.children.length > 0) {
                 createCategoryList(category.children, options)
             }
@@ -145,13 +145,8 @@ export const Category = (props) => {
             form.append('parentId', item.parentId ? item.parentId : "");
             form.append('type', item.type);
         });
-        dispatch(updateCategories(form))
-            .then(result => {
-                if (result) {
-                    dispatch(getAllCategory())
-                }
-            })
-
+        dispatch(updateCategories(form));
+         
         setupdateCategoryModal(false);
     }
 
@@ -174,6 +169,8 @@ export const Category = (props) => {
                     }
                 })
         }
+
+        setdeleteCategoryModal(false);
     }
 
     const renderDeleteCategoryModal = () => {
