@@ -21,6 +21,7 @@ export const Layout = (props) => {
                 <ul>
                   <li><NavLink to={'/'}>Home</NavLink></li>
                   <li><NavLink to={'/products'}>Products</NavLink></li>
+                  <li><NavLink to={'/page'}>Page</NavLink></li>
                   <li><NavLink to={'/orders'}>Orders</NavLink></li>
                   <li><NavLink to={'/category'}>Category</NavLink></li>
                 </ul>

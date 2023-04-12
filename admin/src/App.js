@@ -11,6 +11,7 @@ import { isUserLoggedIn, getInitialData } from './actions';
 import { Products } from './containers/Products/Index';
 import { Orders } from './containers/Orders/Index';
 import { Category } from './containers/Category/Index';
+import NewPage from './containers/Page/Index';
 
 function App() {
 
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path='/products' element={<PrivateRoute />}>
             <Route path='/products' element={ <Products /> } />
+          </Route>
+          <Route path='/page' element={<PrivateRoute />}>
+            <Route path='/page' element={ <NewPage /> } />
           </Route>
           <Route path='/orders' element={<PrivateRoute />}>
             <Route path='/orders' element={ <Orders /> } />
