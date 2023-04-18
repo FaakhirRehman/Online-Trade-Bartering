@@ -15,6 +15,7 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
 const initialDataRoutes = require('./routes/admin/initialData');
+const pageRoutes = require('./routes/admin/page');
 
 //Middlewares
 app.use(cors());
@@ -26,6 +27,8 @@ app.use('/OTP', categoryRoutes);
 app.use('/OTP', productRoutes);
 app.use('/OTP', cartRoutes);
 app.use('/OTP', initialDataRoutes);
+app.use('/OTP', pageRoutes);
+
 
 
 //MongoDB Connection
