@@ -11,20 +11,22 @@ import { isUserLoggedIn, getInitialData } from './actions';
 import { Products } from './containers/Products/Index';
 import { Orders } from './containers/Orders/Index';
 import { Category } from './containers/Category/Index';
-import NewPage from './containers/Page/Index';
+import NewPage from './containers/NewPage/Index';
 
 function App() {
 
   const dispatch = useDispatch();
   const auth = useSelector(state =>  state.auth)
 
+  // ComponenetDidMount or componentDidUpdate
   useEffect(() => {
     if (!auth.authenticate) {
       dispatch(isUserLoggedIn())
     }
-    dispatch(getInitialData())
-
-  }, [])
+    if(auth.authenticate) {
+      dispatch(getInitialData())
+    }
+  }, [auth.authenticate])
 
   return (
     <div className="App">
