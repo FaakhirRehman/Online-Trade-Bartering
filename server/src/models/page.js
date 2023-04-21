@@ -32,7 +32,7 @@ const pageSchema = new mongoose.Schema({
         }
     ],
     category: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'CATEGORY', required: true
+        type: mongoose.Schema.Types.ObjectId, ref: 'CATEGORY', required: true, unique: true
     },
     createdBy: {
         type: mongoose.Schema.Types.ObjectId, red: 'USER', required: true

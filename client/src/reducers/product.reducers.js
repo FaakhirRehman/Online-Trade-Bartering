@@ -8,11 +8,15 @@ const initState = {
         under40k: [],
         under50k: [],
         above50k: []
-    }
+    },
+    pageRequest: false,
+    page: {},
+    error: null
+
 }
 
 export default (state = initState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case productConstants.GET_PRODUCTS_BY_SLUG:
             state = {
                 ...state,
@@ -20,6 +24,26 @@ export default (state = initState, action) => {
                 productsByPrice: {
                     ...action.payload.productsByPrice
                 }
+            }
+            break;
+        case productConstants.GET_PRODUCT_PAGE_REQUEST:
+            state = {
+                ...state,
+                pageRequest: true
+            }
+            break;
+        case productConstants.GET_PRODUCT_PAGE_SUCCESS:
+            state = {
+                ...state,
+                page: action.payload.page,
+                pageRequest: false
+            }
+            break;
+        case productConstants.GET_PRODUCT_PAGE_FAILURE:
+            state = {
+                ...state,
+                pageRequest: false,
+                error: action.payload.error
             }
             break;
     }
