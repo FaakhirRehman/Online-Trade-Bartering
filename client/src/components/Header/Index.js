@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
 import OTPlogo from '../../images/logo/logo.jpg';
 import goldenStar from '../../images/logo/golden-star.png';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { IoIosArrowDown, IoIosCart, IoIosSearch } from 'react-icons/io';
 import {
   Modal,
@@ -10,7 +10,7 @@ import {
   MaterialButton,
   DropdownMenu
 } from '../MaterialUI/Index';
-import { login } from '../../actions';
+import { login, signout } from '../../actions';
 
 /**
 * @author
@@ -22,10 +22,64 @@ export const Header = (props) => {
   const [loginModal, setLoginModal] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
 
   const userLogin = () => {
     dispatch(login({ email, password }));
+  };
+
+  const logout = () => {
+    dispatch(signout());
+  };
+
+  useEffect(() => {
+    if (auth.authenticate) {
+      setLoginModal(false);
+    }
+  }, [auth.authenticate]);
+
+  const renderLoggedInMenu = () => {
+    return (
+      <DropdownMenu
+        menu={
+          <a className='fullName'>
+            {auth.user.firstName + " " + auth.user.lastName}
+          </a>
+        }
+        menus={[
+          { label: 'Your Profile', href: '', icon: null },
+          { label: 'Orders', href: '', icon: null },
+          { label: 'Wishlist', href: '', icon: null },
+          { label: 'Rewards', href: '', icon: null },
+          { label: 'Logout', href: '', icon: null, onClick: logout },
+        ]}
+      />
+    );
+  }
+
+  const renderNonLoggedInMenu = () => {
+    return (
+      <DropdownMenu
+        menu={
+          <a className="loginButton" onClick={() => setLoginModal(true)}>
+            Login
+          </a>
+        }
+        menus={[
+          { label: 'Your Profile', href: '', icon: null },
+          { label: 'Orders', href: '', icon: null },
+          { label: 'Wishlist', href: '', icon: null },
+          { label: 'Rewards', href: '', icon: null },
+        ]}
+        firstMenu={
+          <div className="firstmenu">
+            <span>New Customer?</span>
+            <a style={{ color: '#2874f0' }}>Sign Up</a>
+          </div>
+        }
+      />
+    );
   }
 
   return (
@@ -54,7 +108,6 @@ export const Header = (props) => {
                 label="Enter Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                // rightElement={<a href="#">Forgot?</a>}
               />
 
               <MaterialButton
@@ -111,25 +164,10 @@ export const Header = (props) => {
           </div>
         </div>
         <div className="rightMenu">
-          <DropdownMenu
-            menu={
-              <a className="loginButton" onClick={() => setLoginModal(true)}>
-                Login
-              </a>
-            }
-            menus={[
-              { label: 'Your Profile', href: '', icon: null },
-              { label: 'Orders', href: '', icon: null },
-              { label: 'Wishlist', href: '', icon: null },
-              { label: 'Rewards', href: '', icon: null },
-            ]}
-            firstMenu={
-              <div className="firstmenu">
-                <span>New Customer?</span>
-                <a style={{ color: '#2874f0' }}>Sign Up</a>
-              </div>
-            }
-          />
+          {
+            auth.authenticate ?
+              renderLoggedInMenu() : renderNonLoggedInMenu()
+          }
           <DropdownMenu
             menu={
               <a className="more">

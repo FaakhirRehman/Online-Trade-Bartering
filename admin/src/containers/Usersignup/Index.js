@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 import Layout from '../../components/Layouts';
 import Input from '../../components/UI/Inputs/Index';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { signup } from '../../actions';
 
@@ -69,7 +69,6 @@ export const Usersignup = (props) => {
         <h1>User Account Registration</h1>
       </div>
       <Container>
-        { user.message }
         <Row>
           <Col md={{ span: 6, offset: 3 }}>
             <Form onSubmit={userSignup}>
@@ -162,12 +161,16 @@ export const Usersignup = (props) => {
               <Button variant="primary" type="submit">
                 Sign Up
               </Button>
-              <Form.Text className="text-muted">
-                Already have an account? Sign In Here
-              </Form.Text>
-              <Button variant="secondary" type="submit" >
-                Sign In
-              </Button>
+              <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                <Form.Text className="text-muted">
+                  Already have an admin account? Login here
+                </Form.Text>
+                <Link to="/admin/signin">
+                  <Button variant="secondary" type="" to="/admin/signup">
+                    Login
+                  </Button>
+                </Link>
+              </div>
 
             </Form>
           </Col>

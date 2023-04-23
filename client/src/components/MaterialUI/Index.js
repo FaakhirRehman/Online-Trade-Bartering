@@ -92,7 +92,16 @@ const DropdownMenu = (props) => {
                 <ul className="headerDropdownMenu">
                     {
                         props.menus && props.menus.map((item, index) =>
-                            <li key={index}><a href={item.href}>{item.label}</a></li>
+                            <li key={index}>
+                                <a onClick={(e) => {
+                                    e.preventDefault();
+                                    item.onClick && item.onClick()
+                                }}
+                                    href={item.href}
+                                >
+                                    {item.label}
+                                </a>
+                            </li>
                         )
                     }
                 </ul>
