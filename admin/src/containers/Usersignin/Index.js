@@ -4,7 +4,7 @@ import Layout from '../../components/Layouts';
 import Input from '../../components/UI/Inputs/Index';
 import { login } from '../../actions';
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
+import { Navigate, Link } from 'react-router-dom';
 
 /**
 * @author
@@ -61,14 +61,21 @@ export const Usersignin = (props) => {
               />
 
               <Button variant="primary" type="submit">
-                Sign In
+                Login
               </Button>
-              <Form.Text className="text-muted">
-                Don't have an account? Sign Up Here
-              </Form.Text>
-              <Button variant="secondary" type="submit">
-                Sign Up
-              </Button>
+
+              <div style={{ marginTop: '20px', marginBottom: '20px' }}>
+                <Form.Text className="text-muted">
+                  Don't have an account? Sign Up Here
+                </Form.Text>
+                <Link to="/admin/signup">
+                  <Button variant="secondary" type="" to="/admin/signup">
+                    Sign Up
+                  </Button>
+                </Link>
+              </div>
+
+
 
             </Form>
           </Col>

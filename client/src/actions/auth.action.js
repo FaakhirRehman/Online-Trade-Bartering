@@ -57,6 +57,12 @@ export const signout = () => {
             type: authConstants.LOGOUT_REQUEST
         });
 
+        localStorage.clear();
+
+        dispatch({
+            type: authConstants.LOGOUT_SUCCESS
+        })
+        /*
         const res = await axios.post(`/signout`);
 
         if (res.status === 200) {
@@ -73,7 +79,6 @@ export const signout = () => {
                 }
             })
         }
-
-
+        */
     }
 }

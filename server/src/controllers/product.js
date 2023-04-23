@@ -17,7 +17,7 @@ exports.createProduct = (req, res) => {
 
     let productPictures = [];
 
-    if(req.files.length > 0){
+    if (req.files.length > 0) {
         productPictures = req.files.map(file => {
             return { img: file.filename }
         });
@@ -35,54 +35,73 @@ exports.createProduct = (req, res) => {
     });
 
     product.save((error, product) => {
-        if(error){
+        if (error) {
             return res.status(400).json({
                 error: error
             })
         }
-        
-        if(product) {
+
+        if (product) {
             res.status(200).json({
                 product
             })
         }
     })
-    
+
 }
 
-exports.getProductBySlug= (req, res) => {
+exports.getProductBySlug = (req, res) => {
     const { slug } = req.params;
     Category.findOne({ slug: slug })
-    .select('_id')
-    .exec((error, category) => {
-        if(error){
-            return res.status(400).json({
-                error
-            })
-        }
+        .select('_id')
+        .exec((error, category) => {
+            if (error) {
+                return res.status(400).json({
+                    error
+                })
+            }
 
-        if(category) {
-            Product.find({ category: category._id })
-            .exec((error,  products) => {
-                if(error){
-                    return res.status(400).json({
-                        error
-                    })
-                }
-                if(products.length > 0) {
-                    res.status(200).json({
-                        products,
-                        productsByPrice: {
-                            under20k:  products.filter(product => product.price <= 20000),
-                            under30k:  products.filter(product => product.price > 20000 && product.price <= 30000),
-                            under40k:  products.filter(product => product.price > 30000 && product.price <= 40000),
-                            under50k:  products.filter(product => product.price > 40000 && product.price <= 50000),
-                            above50k:  products.filter(product => product.price > 50000 )
+            if (category) {
+                Product.find({ category: category._id })
+                    .exec((error, products) => {
+                        if (error) {
+                            return res.status(400).json({
+                                error
+                            })
                         }
+                        if (products.length > 0) {
+                            res.status(200).json({
+                                products,
+                                productsByPrice: {
+                                    under20k: products.filter(product => product.price <= 20000),
+                                    under30k: products.filter(product => product.price > 20000 && product.price <= 30000),
+                                    under40k: products.filter(product => product.price > 30000 && product.price <= 40000),
+                                    under50k: products.filter(product => product.price > 40000 && product.price <= 50000),
+                                    above50k: products.filter(product => product.price > 50000)
+                                }
+                            })
+                        }
+
                     })
-                }
-                
-            })
-        }
-    })
+            }
+        })
 }
+
+exports.getProductDetailsById = (req, res) => {
+    // console.log('this is running');
+    const { productId } = req.params;
+    // console.log(productId)
+    if (productId) {
+        Product.findOne({ _id: productId })
+            .exec((error, product) => {
+                if (error) {
+                    return res.status(400).json({ error });
+                }
+                if (product) {
+                    res.status(200).json({ product });
+                }
+            });
+    } else {
+        return res.status(400).json({ error: "Params required" });
+    }
+};
