@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import { Layout } from '../../components/Layout/Index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetailsById } from '../../actions';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { 
     IoIosArrowForward, 
     IoIosCart, 
-    IoIosStar, 
-    IoMdCart 
+    IoIosStar,
   } from 'react-icons/io';
   import { AiFillThunderbolt } from 'react-icons/ai';
   import './Style.css';
 import { generatePublicUrl } from '../../urlConfig';
 import { MaterialButton } from '../../components/MaterialUI/Index';
+import { addToCart } from '../../actions'; 
 
 /**
 * @author
@@ -26,6 +26,10 @@ export const ProductDetailsPage = (props) => {
     const product = useSelector(state => state.product);
     const category = useSelector(state => state.category);
 
+
+    const test = () => {
+        console.log("test");
+    }
     useEffect(() => {
 
         console.log(productId);
@@ -77,6 +81,16 @@ export const ProductDetailsPage = (props) => {
                                     marginRight: '5px'
                                 }}
                                 icon={<IoIosCart />}
+                                onClick={() => {
+                                    const { _id, name, price } = product.productDetails;
+                                    const img = product.productDetails.productPictures[0].img;
+                                    dispatch(
+                                        addToCart({
+                                            _id, name, price, img
+                                        })
+                                    )      
+                                                                 
+                                }}
                             />
 
                             <MaterialButton
