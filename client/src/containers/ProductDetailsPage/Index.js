@@ -3,6 +3,7 @@ import { Layout } from '../../components/Layout/Index';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductDetailsById } from '../../actions';
 import { Link, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { 
     IoIosArrowForward, 
     IoIosCart, 
@@ -23,13 +24,16 @@ export const ProductDetailsPage = (props) => {
 
     const dispatch = useDispatch();
     const { productId } = useParams();
+    const navigate = useNavigate();
     const product = useSelector(state => state.product);
     const category = useSelector(state => state.category);
 
 
-    const test = () => {
-        console.log("test");
+    const navigateToCart = () => {
+        navigate('/cart');
+        //console.log('hi')
     }
+
     useEffect(() => {
 
         console.log(productId);
@@ -88,7 +92,8 @@ export const ProductDetailsPage = (props) => {
                                         addToCart({
                                             _id, name, price, img
                                         })
-                                    )      
+                                    )
+                                    navigateToCart();  
                                                                  
                                 }}
                             />
