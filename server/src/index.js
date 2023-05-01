@@ -16,8 +16,9 @@ const productRoutes = require('./routes/product');
 const cartRoutes = require('./routes/cart');
 const initialDataRoutes = require('./routes/admin/initialData');
 const pageRoutes = require('./routes/admin/page');
+const stripeRoutes = require("./routes/stripe");
 
-//Middlewares
+//Middleware Routes
 app.use(cors());
 app.use(express.json());
 app.use('/public', express.static(path.join(__dirname, 'uploads')))
@@ -28,6 +29,7 @@ app.use('/OTP', productRoutes);
 app.use('/OTP', cartRoutes);
 app.use('/OTP', initialDataRoutes);
 app.use('/OTP', pageRoutes);
+app.use('/OTP/stripe', stripeRoutes);
 
 
 
