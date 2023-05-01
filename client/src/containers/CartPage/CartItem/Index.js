@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Style.css";
 import { generatePublicUrl } from "../../../urlConfig";
+import { Navigate, useNavigate } from "react-router-dom";
 
 /**
  * @author
@@ -8,6 +9,9 @@ import { generatePublicUrl } from "../../../urlConfig";
  **/
 
 const CartItem = (props) => {
+
+    
+
     const [qty, setQty] = useState(props.cartItem.qty);
 
     const { _id, name, price, img } = props.cartItem;
@@ -16,6 +20,8 @@ const CartItem = (props) => {
         setQty(qty + 1);
         props.onQuantityInc(_id, qty + 1);
     };
+
+    
 
     const onQuantityDecrement = () => {
         if (qty <= 1) {

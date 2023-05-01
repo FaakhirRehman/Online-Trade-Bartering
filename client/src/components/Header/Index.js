@@ -11,6 +11,7 @@ import {
   DropdownMenu
 } from '../MaterialUI/Index';
 import { login, signout } from '../../actions';
+import { useNavigate } from 'react-router-dom';
 
 /**
 * @author
@@ -24,10 +25,15 @@ export const Header = (props) => {
   const [password, setPassword] = useState('');
   const auth = useSelector(state => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userLogin = () => {
     dispatch(login({ email, password }));
   };
+
+  const navigateToCart = () => {
+    navigate('/cart');
+  }
 
   const logout = () => {
     dispatch(signout());
@@ -183,7 +189,7 @@ export const Header = (props) => {
             ]}
           />
           <div>
-            <a className="cart">
+            <a className="cart" onClick={() => navigateToCart()} style={{ cursor: "pointer" }}>
               <IoIosCart />
               <span style={{ margin: '0 10px' }}>Cart</span>
             </a>

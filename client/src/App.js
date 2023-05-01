@@ -7,6 +7,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { isUserLoggedIn, updateCart } from './actions';
 import ProductDetailsPage from './containers/ProductDetailsPage/Index';
 import CartPage from './containers/CartPage/Index';
+import CheckoutPage from './containers/CheckoutPage/Index';
+import CheckoutSuccess from './containers/CheckoutSuccess/Index';
+
 
 function App() {
 
@@ -29,6 +32,8 @@ function App() {
         <Routes>
           <Route path='/' exact element={<HomePage />}></Route>
           <Route path='/cart' element={<CartPage />}></Route>
+          <Route path='/checkout-success' element={<CheckoutSuccess />}></Route>
+          <Route path='/checkout' element={<CheckoutPage />}></Route>
           <Route path='/:productSlug/:productId/p' element={<ProductDetailsPage />}></Route>
           <Route path='/:slug' element={<ProductListPage />}></Route>
         </Routes>

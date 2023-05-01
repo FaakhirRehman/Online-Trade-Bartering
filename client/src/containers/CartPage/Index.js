@@ -7,6 +7,8 @@ import { addToCart, getCartItems, removeCartItem } from '../../actions';
 import { MaterialButton } from "../../components/MaterialUI/Index";
 import './Style.css';
 import PriceDetails from '../../components/PriceDetails/Index';
+import { useNavigate } from 'react-router-dom';
+import PayButton from '../../components/PayButton/Index';
 
 const CartPage = (props) => {
     const cart = useSelector((state) => state.cart);
@@ -14,6 +16,12 @@ const CartPage = (props) => {
     // const cartItems = cart.cartItems;
     const [cartItems, setCartItems] = useState(cart.cartItems);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const navigateToCheckout = () => {
+        navigate('/checkout');
+        //console.log('hi')
+    }
 
     useEffect(() => {
         setCartItems(cart.cartItems);
@@ -26,7 +34,6 @@ const CartPage = (props) => {
     }, [auth.authenticate]);
 
     const onQuantityIncrement = (_id, qty) => {
-        //console.log({_id, qty});
         const { name, price, img } = cartItems[_id];
         dispatch(addToCart({ _id, name, price, img }, 1));
     };
@@ -87,7 +94,7 @@ const CartPage = (props) => {
                         <div style={{ width: "250px" }}>
                             <MaterialButton
                                 title="PLACE ORDER"
-                                onClick={() => props.history.push(`/checkout`)}
+                                onClick={() => navigateToCheckout()}
                             />
                         </div>
                     </div>
