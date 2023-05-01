@@ -25,17 +25,7 @@ export const PayButton = (props) => {
         } else {
             console.log("error");
         }
-        
-        //const { URL } = res.data;
-        /*
-        .then((res) => {
-            if (res.data.url) {
-                window.location.href = res.data.url;
-            }
-        }).catch((err) =>
-            console.log(err.message)
-        );
-        */
+    
     }
 
     return (
