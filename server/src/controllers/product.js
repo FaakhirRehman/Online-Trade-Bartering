@@ -81,8 +81,18 @@ exports.getProductBySlug = (req, res) => {
                                 }
                             })
                         }
-
+                        else {
+                            return res.status(200).json({
+                              products: [],
+                            });
+                        }
+                
                     })
+            }
+            else {
+                return res.status(200).json({
+                  products: [],
+                });
             }
         })
 }
