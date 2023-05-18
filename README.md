@@ -1,6 +1,6 @@
-# Online Trade & Bartering System (OTP)
+# Online Trade & Bartering System (OTB)
 
-Online Trade & Bartering System (OTP) is a comprehensive e-commerce website platform that provides a seamless buying, selling, and trading experience for both new and used items. Unlike other popular e-commerce platforms in Pakistan, OTP offers a unique solution by integrating all types of e-commerce services into a single platform.
+Online Trade & Bartering System (OTB) is a comprehensive e-commerce website platform that provides a seamless buying, selling, and trading experience for both new and used items. Unlike other popular e-commerce platforms in Pakistan, OTP offers a unique solution by integrating all types of e-commerce services into a single platform.
 
 ## Key Features
 
