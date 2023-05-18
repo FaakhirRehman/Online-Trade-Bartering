@@ -1,18 +1,17 @@
 const Category = require('../../models/category');
 const Product = require('../../models/product');
 
-function createCategories(categories, parentId = null){
+function createCategories(categories, parentId = null) {
     const categoryList = [];
     let category;
 
-    if(parentId == null){
-        category = categories.filter(cat => cat.parentId == undefined); 
+    if (parentId == null) {
+        category = categories.filter(cat => cat.parentId == undefined);
     } else {
         category = categories.filter(cat => cat.parentId == parentId);
     }
 
-    // recurssive function for creating sub categories
-    for(let cate of category){
+    for (let cate of category) {
         categoryList.push({
             _id: cate._id,
             name: cate.name,

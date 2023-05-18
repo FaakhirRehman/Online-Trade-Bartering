@@ -17,7 +17,6 @@ router.post('/create-checkout-session', async (req, res) => {
                 currency: "pkr",
                 product_data: {
                     name: item.name,
-                    images: [item.img],
                     metadata: {
                         id: item._id,
                     },
@@ -27,7 +26,7 @@ router.post('/create-checkout-session', async (req, res) => {
             quantity: item.qty,
         };
     });
-
+    
     //console.log(JSON.stringify(line_items, null, 2))
 
     const session = await stripe.checkout.sessions.create({
@@ -38,7 +37,7 @@ router.post('/create-checkout-session', async (req, res) => {
         cancel_url: `${process.env.CLIENT_URL}/cart`,
     });
 
-    console.log(session.url);
+    //console.log(session.url);
 
     res.status(200).json({
         URL: session.url
