@@ -30,7 +30,7 @@ exports.requireSignIn = (req, res, next) => {
 }
 
 exports.userMiddleWare = (req, res, next) => {
-    console.log("test2");
+    // console.log("test2");
     next();
 }
 
